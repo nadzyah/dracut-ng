@@ -33,6 +33,10 @@ test_run() {
     client_run "persistent device overlay (device path)" \
         "rd.overlay=/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_overlay"
     client_run "fallback to tmpfs (non-existent LABEL)" "rd.overlay=LABEL=NONEXISTENT"
+    client_run "overlayroot=LABEL (cloud-initramfs-tools)" "overlayroot=LABEL=OVERLAY"
+    client_run "overlayroot=device:dev=UUID (cloud-initramfs-tools)" \
+        "overlayroot=device:dev=UUID=$overlay_uuid"
+    client_run "overlayroot=tmpfs" "overlayroot=tmpfs"
 }
 
 test_setup() {

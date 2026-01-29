@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Check for both new (rd.overlay) and deprecated (rd.live.overlay) parameter names
-if grep -qE ' rd\.(live\.)?overlay=LABEL=persist ' /proc/cmdline; then
+# Check for rd.overlay, deprecated rd.live.overlay, and overlayroot (cloud-initramfs-tools compatibility)
+if grep -qE ' (rd\.(live\.)?overlay|overlayroot)=LABEL=persist ' /proc/cmdline; then
     # Writing to a file in the root filesystem lets test_run() verify that the autooverlay module successfully created
     # and formatted the overlay partition and that the dmsquash-live module used it when setting up the rootfs overlay.
     echo "dracut-autooverlay-success" > /overlay-marker
