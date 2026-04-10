@@ -2,8 +2,6 @@
 name: Daily Tests - zfs
 
 on:  # yamllint disable-line rule:truthy
-    schedule:
-        - cron: '30 23 * * *'   # every day at 23:30 UTC
 
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
